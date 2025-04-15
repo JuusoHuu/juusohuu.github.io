@@ -2,7 +2,28 @@ body{
     font-family: 'Noto-sans', sans-serif;
     text-align: center;
     overflow-x: hidden;
+    background-color: white;
+    color: black;
+    transition: 0.3s;
 }
+body.dark-mode{
+    background-color: #121212;
+    color: white;
+}
+
+#darkModeToggle {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: inherit;
+    margin-left: 20px;
+}
+
+body:not(.dark-mode) #darkModeToggle {
+    color: black;
+}
+
 * {
     margin: 0;
     padding: 0;

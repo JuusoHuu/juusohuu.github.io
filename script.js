@@ -38,6 +38,32 @@ toggle.addEventListener('click', () => {
   navList.classList.toggle('show');
 });
 
+const toggleButton = document.getElementById('darkModeToggle');
+
+toggleButton.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+
+  if (document.body.classList.contains('dark-mode')) {
+    toggleButton.textContent = '☀️';
+    localStorage.setItem('theme', 'dark');
+  } else {
+    toggleButton.textContent = '🌙'; 
+    localStorage.setItem('theme', 'light');
+  }
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+    toggleButton.textContent = '☀️';
+  } else {
+    document.body.classList.remove('dark-mode');
+    toggleButton.textContent = '🌙';
+  }
+});
+
+
 function haeReseptit() {
   // Kun Gemini otetaan käyttöön myöhemmin
 }
