@@ -1,36 +1,38 @@
 <!DOCTYPE html>
 <html lang="fi">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Resepti sovellus</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    </head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resepti sovellus</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet" />
+  </head>
 
-    <body>   
-        <header>
-            <nav>
-                <div class="menu-toggle" id="menu-toggle">&#9776;</div>
-                <ul>
-                    <li><a href="index.html">Koti</a></li>
-                    <li><a href="app.html">Sovellus</a></li>
-                    <li><a href="yhteystiedot.html">Yhteystiedot</a></li>
-                </ul>
+  <body>
+    <header>
+        <h1>Resepti sovellus</h1>
+      <nav>
+        <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+        <ul>
+          <li><a href="index.html">Koti</a></li>
+          <li><a href="app.html">Sovellus</a></li>
+          <li><a href="yhteystiedot.html">Yhteystiedot</a></li>
+        </ul>
+      </nav>
+    </header>
 
-                <button id="darkModeToggle">🌙</button>
-            </nav>
-        </header>
+    <main>
+      <img class="logo" src="logo2.jpg" alt="logo" />
+      <h3 class="otsikko">
+        Tervetuloa sivullemme! <br />
+        Tämä on simppeli resepti sovellus joka hyödyntää tekoälyä sovelluksen
+        reseptien löytämiseen.
+      </h3>
+      <a class="sovellus" href="app.html">SOVELLUKSEEN</a>
+    </main>
 
-        <main>
-            <img class= "logo" src="logo2.jpg" alt="logo">
-            <h3 class= "otsikko">Tervetuloa sivullemme! <br> 
-                Tämä on simppeli resepti sovellus joka hyödyntää tekoälyä sovelluksen reseptien löytämiseen.</h3>
-            <a class="sovellus" href="app.html">SOVELLUKSEEN</a>
-        </main>
-
-        <script src="script.js" defer></script>
-    </body>
+    <script src="script.js" defer></script>
+  </body>
 </html>

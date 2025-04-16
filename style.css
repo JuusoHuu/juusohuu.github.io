@@ -3,25 +3,11 @@ body{
     text-align: center;
     overflow-x: hidden;
     background-color: white;
-    color: black;
-    transition: 0.3s;
+    color:black;
 }
-body.dark-mode{
-    background-color: #121212;
+.dark.mode{
+    background-color: black;
     color: white;
-}
-
-#darkModeToggle {
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: inherit;
-    margin-left: 20px;
-}
-
-body:not(.dark-mode) #darkModeToggle {
-    color: black;
 }
 
 * {
@@ -35,7 +21,7 @@ header {
     color: white;
     text-align: center;
     width: 100%;
-    margin-bottom: 125px;
+    margin-bottom: 100px;
     padding: 20px;
 }
 
@@ -63,6 +49,23 @@ nav ul {
         width: 100%;
         max-width: 300px;
         height: auto;
+    }
+
+    #nav-lista {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        background-color: #333;
+        padding: 10px 0;
+    }
+
+    
+    #nav-lista li {
+        margin: 10px 0;
+    }
+
+    #nav-lista.show {
+        display: flex;
     }
 
     .menu-toggle {
@@ -101,23 +104,6 @@ nav ul li a {
     display: block;
 }
 
-#nav-lista {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    background-color: #333;
-    padding: 10px 0;
-}
-
-#nav-lista li {
-    margin: 10px 0;
-}
-
-#nav-lista.show {
-    display: flex;
-}
-
-
 h3{
     text-align: center;
 }
@@ -140,10 +126,6 @@ h3{
     background-color: #e05500;;
 }
 
-.otsikko{
-    margin-top: -20px;
-}
-
 .kysymys{
     text-align: center;
     margin-top: 40px;
@@ -154,11 +136,14 @@ h3{
     margin-left: 25px;
 }
 
-#sisalto{
+#Ksisalto{
     text-align: center;
     margin-top: 40px;
 }
-
+#Esisalto{
+    text-align: center;
+    margin-top: 40px;
+}
 .hidden{
     display: none;
 }
@@ -172,29 +157,29 @@ textarea {
     font-size: large;
 }
 
-  input[type="range"] {
+input[type="range"] {
     width: 200px;
     margin: 10px;
 }
 
-  #aikaaKokata{
+#aikaaKokata{
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
 }
   
-  #slidebar{
+#slidebar{
     text-align: center;
     margin: 20px 0;
 }
 
-  input[type="range"] {
+input[type="range"] {
     width: 200px;
     margin-bottom: 10px; 
 }
   
-  button{
+button{
     margin-top: 50px;
     size: 500px;
 }
