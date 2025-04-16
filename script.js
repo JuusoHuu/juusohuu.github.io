@@ -61,28 +61,23 @@ document.addEventListener("DOMContentLoaded", () => {
       allergiat: allergiat
     };
 
+    console.log(vastaukset);
+
     const promptti = `
-    Sinun tulee ehdottaa kolmea reseptiä, joka täyttää seuraavat ehdot:
-    - Käytetään jääkaapin sisältöä: ${kaappiValinta === "yes" ? "Kyllä" : "Ei"}
-    - Käytettävät tuotteet: ${tuotteet || "Ei määritelty"}
-    - Ruokatyyppi: ${vaihtoehto || "Ei määritelty"}
-    - Maksimiaika: ${aikaraja} minuuttia
-    - Allergiat: ${allergiat || "Ei allergioita"}
-    
-    Anna kolmen ehdotuksen nimet.
-    `;
+    käytä [allergiat] ja [aikaraja] ja [vaihtoehto] anna resepti niistä
+`;
     
       try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbwO5L-Ca8UvGzK5mEhykejkWkzYFdvH7DdxU3c-GvV0pQRVT0Ey3pEoWu-JFKZaAfgB/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbw5H15jY_ELiGHDmkhoV4Wy7tfwoilek7wD_Egn0HFKNfTpOhlk3LB4iDqyMz5jxW_o/exec', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ prompt: promptti })
         });
     
         const data = await response.json();
-        console.log("Geminin raakadata:", data);
+        console.log(data);
 
-        const vastaus = data.candidates[0].content.parts[0].text;
+        //const vastaus = data.candidates[0].content.parts[0].text;
     
         alert("Geminin ehdotus:\n" + vastaus);
       } catch (err) {
