@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
         button.addEventListener("click", (e) => {
           const valinta = e.target.getAttribute("data-valinta");
           console.log("Käyttäjä valitsi reseptin:", valinta);
-          document.getElementById("valittuResepti").innerHTML = `<em>Haetaan tarkkaa reseptiä...</em>`;
+          document.getElementById("valittuResepti").innerHTML = `<em>Haetaan reseptiä...</em>`;
           haeTarkempiResepti(valinta);
         });
       });
