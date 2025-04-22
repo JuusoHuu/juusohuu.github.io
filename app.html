@@ -11,12 +11,10 @@
     </head> 
     <body>
         <header>
-            <h1>Resepti sovellus</h1>
             <nav>
                 <ul>
                     <li><a href="index.html">Koti</a></li>
                     <li><a href="app.html">Sovellus</a></li>
-                    <li><a href="yhteystiedot.html">Yhteystiedot</a></li>
                 </ul>
             </nav>
         </header>
@@ -26,10 +24,10 @@
             <h3>Haluatko käyttää jääkaappisi ja kaappisi tuotteita?</h3>
 
             <div class="kysymys">
-                <label> </label>
-                    <input type="radio" name="jaakaappiSisalto" value="yes" id="radioYes"> Kyllä
-                  <label></label>
-                    <input type="radio" name="jaakaappiSisalto" value="no" id="radioNo"> Ei                
+                <input type="radio" name="jaakaappiSisalto" value="yes" id="radioYes">
+                <label for="radioYes">Kyllä</label>
+                <input type="radio" name="jaakaappiSisalto" value="no" id="radioNo">
+                <label for="radioNo">Ei</label>
             </div>
 
             <div id="Ksisalto" class="hidden">
@@ -39,24 +37,21 @@
             
             <div id="Esisalto" class="hidden">
                 <h3>Minkä laista ruokaa haluat</h3>   
-                <form >
                 <input type="radio" id="valinta1" name="vaihtoehto" value="liha">
-                <label class="option" for="valinta1" > Liha</label>
-
+                <label for="valinta1">Liha</label>
+              
                 <input type="radio" id="valinta2" name="vaihtoehto" value="kevyt">
-                <label class="option" for="valinta2">Kevyt</label>
-
+                <label for="valinta2">Kevyt</label>
+              
                 <input type="radio" id="valinta3" name="vaihtoehto" value="salaatti">
-                <label class="option" for="valinta3" > Salaatti</label>
-
+                <label for="valinta3">Salaatti</label>
+              
                 <input type="radio" id="valinta4" name="vaihtoehto" value="vege">
-                <label class="option" for="valinta4" >Vegaaninen</label>
-                </form>
-                             
+                <label for="valinta4">Vegaaninen</label>   
             </div>
 
             <div id="slidebar" class="hidden">
-                <h3>Kuinka paljon aikaa kokata</h3>
+                <h3 class="aika">Kuinka paljon aikaa kokata</h3>
                 <label for="aika" id="aikaaKokata"> </label>
                     <span>15 min</span>
                     <input type="range" id="aika" name="aika" min="15" max="120" step="5">

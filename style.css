@@ -17,12 +17,10 @@
   
   /* Navigaatio */
   nav {
-    background-color: #333;
     padding: 10px;
-    position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 1000;   
   }
   
   nav ul {
@@ -32,10 +30,15 @@
     gap: 20px;
   }
   
-  nav ul li a {
+  nav ul li a { 
+    display: inline-block;
+    background-color: rgba(244, 162, 97, 0.8);
     color: white;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    font-weight: bold;
     text-decoration: none;
-    padding: 10px;
   }
   
   .menu-toggle {
@@ -135,7 +138,7 @@
     font-size: 16px;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    transition: background-color 0.3s, transform 0.2s; 
   }
   
   button:hover {
@@ -212,4 +215,61 @@
   
 .hidden{
     display: none;
+}
+
+.kysymys{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.kysymys input[type="radio"] {
+    display: none;
+  }
+
+.kysymys label {
+    background-color: #f4a261;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-weight: 500;
+}
+
+.kysymys input[type="radio"]:checked + label {
+    background-color: #e76f51;
+    transform: scale(1.05);
+  }
+
+#Esisalto{
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+#Esisalto input[type="radio"] {
+    display: none;
+}
+
+#Esisalto label{
+    background-color: #f4a261;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-weight: 500;
+}
+
+#Esisalto input[type="radio"]:checked + label {
+    background-color: #e76f51;
+    transform: scale(1.05);
+  }
+
+.aika{
+    margin-top: 20px;
 }

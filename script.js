@@ -27,6 +27,7 @@ radioNo.addEventListener("change", () => {
   }
 });
 
+
 document.addEventListener("DOMContentLoaded", () => {
   const aikaSlider = document.getElementById("aika");
   const aikaArvo = document.getElementById("aikaArvo");

@@ -23,7 +23,7 @@ app.post("/api/ask", async (req, res) => {
     kaytaKaapinSisaltoa === "yes" ? tuotteet : "ei määritelty"
   }
 Valmistusaika max ${aikaraja} min eikä sisällä: ${allergiat || "ei mitään"}.
-Listaa pelkät reseptien nimet, ei aineksia, valmistusohjeita tai muita huomioita.`;
+Listaa pelkät reseptien nimet, ei aineksia, valmistusohjeita tai muita huomioita äläkä kommentoi muuta ylimääräistä.`;
 
   try {
     const response = await axios.post(
