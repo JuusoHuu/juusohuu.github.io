@@ -1,114 +1,115 @@
-body{
-    font-family: 'Noto-sans', sans-serif;
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
     text-align: center;
-    overflow-x: hidden;
-    background-color: white;
-    color:black;
-}
-.dark.mode{
+    color: black;
+    
+  }
+  
+  /* Tumma tila */
+  .dark.mode {
     background-color: black;
     color: white;
-}
-
-* {
+  }
+  
+  /* Nollaa marginaalit ja käytä laatikkolaskentaa */
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-nav {
-    background-color: #333;
+  }
+  
+  /* ========== Navigaatio ja yläpalkki ========== */
+  nav {
     padding: 10px;
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000;  
-}
-
-header {
+    z-index: 1000;
+  }
+  
+  header {
+    background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1950&q=80');
     background-color: #333;
     color: white;
     text-align: center;
     width: 100%;
     margin-bottom: 100px;
     padding: 20px;
-}
-
-nav ul {
+  }
+  
+  nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
-    padding: 0;
-    margin: 0;
     gap: 20px;
-}
-
-@media (max-width:768px){
-
-    .logo{
-        width: 100%;
-        max-width: 300px;
-        height: auto;
-    }
-
-    #nav-lista {
-        display: none;
-        flex-direction: column;
-        align-items: center;
-        background-color: #333;
-        padding: 10px 0;
-    }
-
-    
-    #nav-lista li {
-        margin: 10px 0;
-    }
-
-    #nav-lista.show {
-        display: flex;
-    }
-
-    .menu-toggle {
-        display: block;
-    }
-}
-.logo{
-    display: block;
-    width: 100%;
-    max-width: 600px;
-    height: 100%;
-    max-height: 450px;
-    margin: 0 auto;
-    margin-bottom: 10px;
-}
-
-nav ul li {
+  }
+  
+  nav ul li a {
     color: white;
     text-decoration: none;
     padding: 10px;
     display: block;
-}
-.menu-toggle{
+  }
+  
+  nav ul li {
+    color: white;
+    display: block;
+  }
+  
+  .menu-toggle {
     display: none;
     font-size: 30px;
     color: white;
     cursor: pointer;
     text-align: right;
     padding: 0 20px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    padding: 10px;
+  }
+  
+  /* ========== Responsiivinen navigaatio ========== */
+  @media (max-width:768px){
+    .logo {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+    }
+  
+    #nav-lista {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      background-color: #333;
+      padding: 10px 0;
+    }
+  
+    #nav-lista li {
+      margin: 10px 0;
+    }
+  
+    #nav-lista.show {
+      display: flex;
+    }
+  
+    .menu-toggle {
+      display: block;
+    }
+  }
+  
+  /* ========== Logo ja sovelluslinkit ========== */
+  .logo {
     display: block;
-}
-
-h3{
-    text-align: center;
-}
-
-.sovellus{
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    margin: 0 auto 10px auto;
+  }
+  
+  .sovellus {
     display: block;
     text-align: center;
     margin-top: 20px;
@@ -121,65 +122,88 @@ h3{
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
-}
-.sovellus:hover{
-    background-color: #e05500;;
-}
-
-.kysymys{
+  }
+  
+  .sovellus:hover {
+    background-color: #e05500;
+  }
+  
+  /* ========== Sovelluksen lomakealue ========== */
+  .container {
+    background-color: #ffffff;
+    max-width: 700px;
+    width: 90%;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
     text-align: center;
-    margin-top: 40px;
-}
-
-.kysymys input[type="radio"]{
-    transform: scale(1.5);
-    margin-left: 25px;
-}
-
-#Ksisalto{
-    text-align: center;
-    margin-top: 40px;
-}
-#Esisalto{
-    text-align: center;
-    margin-top: 40px;
-}
-.hidden{
-    display: none;
-}
-
-textarea {
+    margin: 140px auto 40px auto;
+  }
+  
+  /* Otsikko */
+  h1, h3, label {
+    margin-bottom: 1.5rem;
+    color: black;
+  }
+  
+  /* Syöttökentät */
+  input[type="text"],
+  textarea {
     max-width: 600px;
     width: 70%;
-    height: 100px;
-    margin: 0 auto;
-    display: block;
-    font-size: large;
-}
-
-input[type="range"] {
-    width: 200px;
-    margin: 10px;
-}
-
-#aikaaKokata{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+  }
   
-#slidebar{
-    text-align: center;
-    margin: 20px 0;
-}
-
-input[type="range"] {
-    width: 200px;
-    margin-bottom: 10px; 
-}
+  input[type="text"]:focus,
+  textarea:focus {
+    border-color: #ff6f61;
+  }
   
-button{
-    margin-top: 50px;
-    size: 500px;
+  /* Napit */
+  button {
+    background-color: #ff6f61;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  button:hover {
+    background-color: #e4574f;
+    transform: scale(1.03);
+  }
+  
+  /* Vastauslaatikko */
+  #vastaus {
+    background: #ffffff;
+    color: #1a1a1a;
+    border-left: 5px solid #ff6f61;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    text-align: left;
+    border-radius: 8px;
+    white-space: pre-wrap;
+    font-family: 'Courier New', monospace;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Responsiivisuus pienille näytöille */
+  @media (max-width: 600px) {
+    .container {
+      padding: 1.5rem;
+      margin: 100px 1rem 30px 1rem;
+    }
+  }
+
+  .hidden{
+    display: none;
 }
