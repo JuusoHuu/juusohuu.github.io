@@ -63,25 +63,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
     console.log(vastaukset);
 
-    const promptti = `
-    käytä [allergiat] ja [aikaraja] ja [vaihtoehto] anna resepti niistä
-`;
+    try {
+      const promptti = `Käytä seuraavia ehtoja ja ehdota resepti:
+    - Käytetään kaapin sisältöä: ${kaappiValinta === "yes" ? tuotteet : "ei"}
+    - Ruokatyyppi: ${vaihtoehto || "ei määritelty"}
+    - Aikaraja: ${aikaraja} minuuttia
+    - Allergiat: ${allergiat || "ei"}.
+    Anna lyhyt resepti.`;
     
-      try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbw5H15jY_ELiGHDmkhoV4Wy7tfwoilek7wD_Egn0HFKNfTpOhlk3LB4iDqyMz5jxW_o/exec', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ prompt: promptti })
-        });
+      const response = await fetch("https://script.google.com/macros/s/AKfycbz6YVLbxFqyHCTaI9HtUAmpBi7KBqi7lMWt5YbI5xgrsfbr89nRNj7dyKudqQDBnNf0/exec", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: promptti })
+      });
     
-        const data = await response.json();
-        console.log(data);
-
-        //const vastaus = data.candidates[0].content.parts[0].text;
+      const data = await response.json();
+      const vastaus = data.candidates[0].content.parts[0].text;
     
-        alert("Geminin ehdotus:\n" + vastaus);
-      } catch (err) {
-        alert("Virhe vastauksessa: " + err.message);
-      }
+      alert("Geminin ehdotus:\n" + vastaus);
+    } catch (err) {
+      alert("Virhe vastauksessa: " + err.message);
+    }
     });
   }); 

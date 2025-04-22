@@ -16,15 +16,6 @@ body{
     box-sizing: border-box;
 }
 
-header {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    width: 100%;
-    margin-bottom: 100px;
-    padding: 20px;
-}
-
 nav {
     background-color: #333;
     padding: 10px;
@@ -32,6 +23,15 @@ nav {
     top: 0;
     width: 100%;
     z-index: 1000;  
+}
+
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 100px;
+    padding: 20px;
 }
 
 nav ul {
