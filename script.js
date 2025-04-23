@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Lähetetään palvelimelle:", vastaukset);
 
     try {
-      const response = await fetch("http://localhost:3000/api/ask", {
+      const response = await fetch("`${window.ENV.API_BASE_URL}/api/ask`", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function haeTarkempiResepti(reseptiNimi) {
   try {
-    const response = await fetch("http://localhost:3000/api/ask", {
+    const response = await fetch("`${window.ENV.API_BASE_URL}/api/ask`", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -139,29 +139,3 @@ async function haeTarkempiResepti(reseptiNimi) {
     console.error("Virhe tarkemmassa reseptikyselyssä:", e.message);
   }
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  const darkToggle = document.getElementById("darkModeToggle");
-
-  const applyDarkModeFromStorage = () => {
-    const isDark = localStorage.getItem("darkMode") === "true";
-    if (isDark) {
-      document.body.classList.add("dark-mode");
-      if (darkToggle) darkToggle.textContent = "☀️";
-    } else {
-      document.body.classList.remove("dark-mode");
-      if (darkToggle) darkToggle.textContent = "🌙";
-    }
-  };
-
-  applyDarkModeFromStorage();
-
-  if (darkToggle) {
-    darkToggle.addEventListener("click", () => {
-      document.body.classList.toggle("dark-mode");
-      const isDark = document.body.classList.contains("dark-mode");
-      localStorage.setItem("darkMode", isDark);
-      darkToggle.textContent = isDark ? "☀️" : "🌙";
-    });
-  }
-});

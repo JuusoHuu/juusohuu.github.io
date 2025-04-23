@@ -1,3 +1,3 @@
 window.ENV = {
-    API_BASE_URL: "https://juusohuu-github-io.railway.internal"
+    API_BASE_URL: "juusohuugithubio-production.up.railway.app"
   };
