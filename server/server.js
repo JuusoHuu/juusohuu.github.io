@@ -5,6 +5,12 @@ const cors = require("cors");
 
 const app = express();
 app.use(cors());
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
 app.use(express.json());
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
@@ -18,6 +24,8 @@ app.post("/api/ask", async (req, res) => {
     allergiat,
     prompt
   } = req.body;
+
+  console.log("🧠 Prompt being sent to Gemini:", promptToUse);
 
   const promptToUse = prompt || `Anna 3 ruokareseptiä, joissa käytetään ${
     kaytaKaapinSisaltoa === "yes" ? tuotteet : "ei määritelty"
