@@ -78,13 +78,13 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Lähetetään palvelimelle:", vastaukset);
 
     try {
-      const response = await fetch(fetch(`${window.ENV.API_BASE_URL}/api/ask`, {
+      const response = await fetch(`${window.ENV.API_BASE_URL}/api/ask`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(vastaukset)
-      }));
+      });
 
       const data = await response.json();
       console.log("Palvelimen vastaus:", data);
@@ -119,13 +119,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function haeTarkempiResepti(reseptiNimi) {
   try {
-    const response = await fetch(fetch(`${window.ENV.API_BASE_URL}/api/ask`, {
+    const response = await fetch(`${window.ENV.API_BASE_URL}/api/ask`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ prompt: `Anna tarkka resepti ja ainesmäärät ruoalle: ${reseptiNimi}` })
-    }));
+    });
 
     const data = await response.json();
     const vastaus = data.candidates?.[0]?.content?.parts?.[0]?.text || "Ei reseptiä saatavilla.";
