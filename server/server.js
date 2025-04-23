@@ -25,13 +25,14 @@ app.post("/api/ask", async (req, res) => {
     prompt
   } = req.body;
 
-  console.log("🧠 Prompt being sent to Gemini:", promptToUse);
 
   const promptToUse = prompt || `Anna 3 ruokareseptiä, joissa käytetään ${
     kaytaKaapinSisaltoa === "yes" ? tuotteet : "ei määritelty"
   }
 Valmistusaika max ${aikaraja} min eikä sisällä: ${allergiat || "ei mitään"}.
 Listaa pelkät reseptien nimet, ei aineksia, valmistusohjeita tai muita huomioita äläkä kommentoi muuta ylimääräistä.`;
+
+console.log("🧠 Prompt being sent to Gemini:", promptToUse);
 
   try {
     const response = await axios.post(
