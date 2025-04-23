@@ -32,9 +32,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const aikaSlider = document.getElementById("aika");
   const aikaArvo = document.getElementById("aikaArvo");
 
+  //Funktio taustan väriin
+  function paivitaSliderVari() {
+    const min = aikaSlider.min;
+    const max = aikaSlider.max;
+    const val = aikaSlider.value;
+
+    const prosentti = ((val - min) / (max - min)) * 100;
+    aikaSlider.style.background = `linear-gradient(to right, #ffa500 0%, #ffa500 ${prosentti}%, #ccc ${prosentti}%, #ccc 100%)`;
+  }
+
+  //Päivitä sekä arvo että väri
   aikaSlider.addEventListener("input", function () {
     aikaArvo.textContent = this.value;
+    paivitaSliderVari(); // uusi lisäys
   });
+
+  //Alustus kun sivu latautuu
+  aikaArvo.textContent = aikaSlider.value;
+  paivitaSliderVari();
+});
 
   document.getElementById("haku").addEventListener("click", async () => {
     const kaappiValinta = document.querySelector('input[name="jaakaappiSisalto"]:checked')?.value;
@@ -99,7 +116,6 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Virhe haettaessa reseptejä:", e.message);
     }
   });
-});
 
 async function haeTarkempiResepti(reseptiNimi) {
   try {
@@ -123,3 +139,29 @@ async function haeTarkempiResepti(reseptiNimi) {
     console.error("Virhe tarkemmassa reseptikyselyssä:", e.message);
   }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const darkToggle = document.getElementById("darkModeToggle");
+
+  const applyDarkModeFromStorage = () => {
+    const isDark = localStorage.getItem("darkMode") === "true";
+    if (isDark) {
+      document.body.classList.add("dark-mode");
+      if (darkToggle) darkToggle.textContent = "☀️";
+    } else {
+      document.body.classList.remove("dark-mode");
+      if (darkToggle) darkToggle.textContent = "🌙";
+    }
+  };
+
+  applyDarkModeFromStorage();
+
+  if (darkToggle) {
+    darkToggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      const isDark = document.body.classList.contains("dark-mode");
+      localStorage.setItem("darkMode", isDark);
+      darkToggle.textContent = isDark ? "☀️" : "🌙";
+    });
+  }
+});

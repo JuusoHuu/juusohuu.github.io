@@ -20,6 +20,7 @@
     padding: 10px;
     top: 0;
     width: 100%;
+    position: fixed;
     z-index: 1000;   
   }
   
@@ -33,12 +34,11 @@
   nav ul li a { 
     display: inline-block;
     background-color: rgba(244, 162, 97, 0.8);
-    color: white;
     padding: 10px 20px;
-    margin-top: 20px;
     border-radius: 8px;
     font-weight: bold;
     text-decoration: none;
+    color: white;
   }
   
   .menu-toggle {
@@ -74,20 +74,69 @@
   
   /* Header esim. taustakuvan kanssa */
   header {
-    background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1950&q=80');
-    background-size: cover;
     background-position: center;
     color: white;
-    padding: 100px 20px 60px 20px;
+    padding: 20px 20px 60px 20px;
     text-align: center;
   }
+
+  .hero-banner {
+    position: relative;
+    height: 350px;
+    background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    border-radius: 0 0 20px 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    margin-bottom: 40px;
+  }
+
+  .hero-banner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+  }
+
+  .hero-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 10px 20px;
+    border-radius: 12px;
+  }
+
+  .hero-nav ul li a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: white;
+  padding-top: 100px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.hero-content .otsikko {
+  font-size: 1.4rem;
+  line-height: 1.6;
+  margin: 0 auto;
+  max-width: 800px;
+  color: white;
+}
   
   /* Logo */
   .logo {
     display: block;
     max-width: 600px;
-    width: 100%;
-    margin: 0 auto 20px;
+    margin: 30px auto 10px auto;
   }
   
   /* Päälaatikko */
@@ -152,7 +201,7 @@
     background-color: #ffa500;
     color: white;
     padding: 10px 20px;
-    margin-top: 20px;
+    margin: 10px auto 40px auto;
     border-radius: 8px;
     font-weight: bold;
     text-decoration: none;
@@ -223,6 +272,7 @@
     gap: 1rem;
     justify-content: center;
     margin-top: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .kysymys input[type="radio"] {
@@ -237,6 +287,7 @@
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
     font-weight: 500;
+    margin-bottom: 20px;
 }
 
 .kysymys input[type="radio"]:checked + label {
@@ -256,20 +307,55 @@
 }
 
 #Esisalto label{
-    background-color: #f4a261;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    font-weight: 500;
+  background-color: #f4a261;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  font-weight: 500;
 }
 
 #Esisalto input[type="radio"]:checked + label {
-    background-color: #e76f51;
-    transform: scale(1.05);
-  }
+  background-color: #e76f51;
+  transform: scale(1.05);
+}
 
 .aika{
-    margin-top: 20px;
+  margin-top: 20px;
 }
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  max-width: 600px;
+  width: 70%;
+  height: 10px;
+  border-radius: 5px;
+  background: linear-gradient(to right, #ffa500 0%, #ccc 0%);
+  outline: none;
+  margin: 1rem auto;
+  transition: background 0.3s;
+}
+
+/* Liukupallo tyylikäs mutta ilman emoji */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #e4574f;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #e4574f;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
