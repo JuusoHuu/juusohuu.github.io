@@ -117,25 +117,30 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-async function haeTarkempiResepti(reseptiNimi) {
-  try {
-    const response = await fetch(`${window.ENV.API_BASE_URL}/api/ask`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ prompt: `Anna tarkka resepti ja ainesmäärät ruoalle: ${reseptiNimi}` })
-    });
-
-    const data = await response.json();
-    const vastaus = data.candidates?.[0]?.content?.parts?.[0]?.text || "Ei reseptiä saatavilla.";
-
-    const valittuBox = document.getElementById("valittuResepti");
-    valittuBox.innerHTML = `
-      <h4>Valitsemasi resepti: ${reseptiNimi}</h4>
-      <p>${vastaus.replace(/\n/g, "<br>")}</p>
-    `;
-  } catch (e) {
-    console.error("Virhe tarkemmassa reseptikyselyssä:", e.message);
+  async function haeTarkempiResepti(reseptiNimi) {
+    if (!reseptiNimi || reseptiNimi === "Ei vastausta") {
+      console.warn("Skipping invalid recipe request:", reseptiNimi);
+      return;
+    }
+    
+    try {
+      const response = await fetch(`${window.ENV.API_BASE_URL}/api/ask`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ prompt: `Anna tarkka resepti ja ainesmäärät ruoalle: ${reseptiNimi}` })
+      });
+  
+      const data = await response.json();
+      const vastaus = data.candidates?.[0]?.content?.parts?.[0]?.text || "Ei reseptiä saatavilla.";
+  
+      const valittuBox = document.getElementById("valittuResepti");
+      valittuBox.innerHTML = `
+        <h4>Valitsemasi resepti: ${reseptiNimi}</h4>
+        <p>${vastaus.replace(/\n/g, "<br>")}</p>
+      `;
+    } catch (e) {
+      console.error("Virhe tarkemmassa reseptikyselyssä:", e.message);
+    }
   }
-}
