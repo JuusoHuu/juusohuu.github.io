@@ -13,6 +13,10 @@ app.use((req, res, next) => {
 });
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send("✅ Resepti API is alive!");
+});
+
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
 app.post("/api/ask", async (req, res) => {
@@ -62,7 +66,7 @@ console.log("Prompt being sent to Gemini:", promptToUse);
 });
 
 console.log("📦 ENV PORT:", process.env.PORT);
-const PORT = process.env.PORT || 3000 || 8080;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
