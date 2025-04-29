@@ -32,7 +32,7 @@ app.post("/api/ask", async (req, res) => {
 Valmistusaika max ${aikaraja} min eikä sisällä: ${allergiat || "ei mitään"}.
 Listaa pelkät reseptien nimet, ei aineksia, valmistusohjeita tai muita huomioita äläkä kommentoi muuta ylimääräistä.`;
 
-console.log("🧠 Prompt being sent to Gemini:", promptToUse);
+console.log("Prompt being sent to Gemini:", promptToUse);
 
   try {
     const response = await axios.post(
@@ -61,7 +61,8 @@ console.log("🧠 Prompt being sent to Gemini:", promptToUse);
   }
 });
 
-const PORT = process.env.PORT || 3000;
+console.log("📦 ENV PORT:", process.env.PORT);
+const PORT = process.env.PORT || 3000 || 8080;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
