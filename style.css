@@ -40,6 +40,9 @@ nav ul li a {
   text-decoration: none;
   color: white;
 }
+nav ul li a:hover{
+  background-color: #e4574f;
+}
 
 /*hampurilais menun asettelu pienille näytöille*/
 .menu-toggle {
@@ -208,7 +211,7 @@ button:hover {
 }
 
 .sovellus:hover {
-  background-color: #e07b00;
+  background-color: #e4574f;
 }
 
 /*Geminin vastaus alue*/
@@ -291,6 +294,10 @@ button:hover {
   margin-bottom: 20px;
 }
 
+.kysymys label:hover{
+  background-color: #e4574f;
+}
+
 .kysymys input[type="radio"]:checked + label {
   background-color: #e76f51;
   transform: scale(1.05);
@@ -359,10 +366,6 @@ background: #e4574f;
 border: none;
 border-radius: 50%;
 cursor: pointer;
-}
-
-.appNav{
-background-color: none;
 }
 
 /*responsiivisuus pienille näytöille*/
@@ -620,4 +623,32 @@ main {
 /*etusivun hampurilaismenun väri*/
 body.etusivu .hamburger {
 color: white;
+}
+
+@media (max-width: 420px) {
+  .container,
+  #vastaus,
+  input[type="text"],
+  textarea {
+    width: 95%;
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .kysymys label,
+  #Esisalto label {
+    padding: 10px 14px;
+    font-size: 0.95rem;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  input[type="range"] {
+    width: 100%;
+  }
 }
