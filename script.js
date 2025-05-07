@@ -186,3 +186,5 @@ document.addEventListener("DOMContentLoaded", () => {
       heroContent.style.display = "block";
     }
   }
+
+  
