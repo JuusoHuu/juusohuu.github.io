@@ -79,7 +79,9 @@ console.log("Prompt being sent to Gemini:", promptToUse);
 });
 
 //määritetään portti jota palvelin kuuntelee ympäristö muuttuja tai oletus 3000
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
+
+console.log("Ympäristöportti:", process.env.PORT);
 
 //käynnistetään palvelin
 app.listen(PORT, () => {
