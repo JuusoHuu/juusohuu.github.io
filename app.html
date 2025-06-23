@@ -18,9 +18,14 @@
                     <ul>
                         <li><a href="index.html">Koti</a></li>
                         <li><a href="#" onclick="avaaResetVahvistus(event)">Reset</a></li>
-                        <li><a href="app.html">Sovellus</a></li>    
+                        <li><a href="suosikit.html">Suosikit</a></li>
                     </ul>
                 </nav>
+                <div id="auth-area">
+                    <span id="user-info"></span>
+                    <a href="#" id="login-btn">Kirjaudu</a>
+                    <a href="#" id="logout-btn" style="display: none;">Uloskirjautuminen</a>
+                  </div>
             </header>
 
             <main>
@@ -72,9 +77,15 @@
 
                 <div id="vastaus" class="hidden"></div>
 
+                <div id="toast" class="toast hidden">Resepti lisätty suosikkeihin!</div>
+
             </main>
             <script src="env.js"></script>
-            <script src="script.js"></script>
+            <script type="module">
+                import { setupAuthHandlers } from './users.js';
+                setupAuthHandlers();
+            </script>
+            <script type="module" src="script.js"></script>
 
             <div id="resetModal" class="modal hidden">
                 <div class="modal-content">
