@@ -17,32 +17,30 @@
         </div>
         <nav class="hero-nav" id="navMenu">
           <ul>
-            <li><a href="index.html">Koti</a></li>
-            <li><a href="suosikit.html">Suosikit</a></li>
-            <li><a href="app.html">Sovellus</a></li>
-
+            <li><a href="index.html" data-i18n="home"="">Koti</a></li>
+            <li><a href="tallennetut.html" data-i18n="saved">Tallennetut</a></li>
+            <li><a href="app.html" data-i18n="app"="">Sovellus</a></li>
           </ul> 
+          </div>
         </nav>
 
         <div id="auth-area">
           <span id="user-info"></span>
-          <a href="#" id="login-btn">Kirjaudu</a>
-          <a href="#" id="logout-btn" style="display: none;">Uloskirjautuminen</a>
+          <a href="#" id="login-btn" data-i18n="login">Kirjaudu</a>
+          <a href="#" id="logout-btn" style="display: none;" data-i18n="logout">Uloskirjautuminen</a>
         </div>
       
 
         <div class="hero-content">
-          <h1 class="otsikko">
+          <h1 class="otsikko" data-i18n="welcomeMessage">
             Tervetuloa sivullemme!<br>
             Tämä on simppeli resepti sovellus joka hyödyntää tekoälyä reseptien löytämiseen.
           </h1>
         </div>
       </header>
 
-      <main>
-        <p id="user-info" style="color: black; margin-top: 10px;"></p>       
-        <img class="logo" src="logo2.jpg" alt="logo">
-        <a class="sovellus" href="app.html">SOVELLUKSEEN</a>
+      <main>    
+        <a class="sovellus" href="app.html" data-i18n="toApp">SOVELLUKSEEN</a>
       </main>
 
       <script type="module">

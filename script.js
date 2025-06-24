@@ -179,28 +179,28 @@ document.addEventListener("DOMContentLoaded", () => {
       valittuBox.innerHTML = `
         <h4>${reseptiNimi}</h4>
         <p>${vastaus.replace(/\n/g, "<br>")}</p>
-        <button id="suosikkiNappi">⭐ Lisää suosikiksi</button>
+        <button id="suosikkiNappi">Tallenna resepti</button>
       `;
   
       // Suosikkinappi ja visuaalinen palaute
       document.getElementById("suosikkiNappi").addEventListener("click", async () => {
         const nappi = document.getElementById("suosikkiNappi");
         nappi.disabled = true;
-        nappi.innerHTML = "⭐ Tallennetaan...";
+        nappi.innerHTML = "Tallennetaan...";
   
         try {
           await addFavorite({ title: reseptiNimi, content: vastaus });
-          nappi.innerHTML = "✅ Lisätty suosikkeihin!";
-          showToast("Resepti lisätty suosikkeihin!");
+          nappi.innerHTML = "Resepti tallennettu!";
+          showToast("Resepti tallennettu!");
         } catch (err) {
-          nappi.innerHTML = "❌ Virhe lisättäessä!";
+          nappi.innerHTML = "Virhe lisättäessä!";
           console.error(err);
-          showToast("Virhe lisättäessä suosikkia.");
+          showToast("Virhe tallentamisessa");
         }
         
         setTimeout(() => {
           nappi.disabled = false;
-          nappi.innerHTML = "⭐ Lisää suosikiksi";
+          nappi.innerHTML = "Tallenna resepti";
           nappi.classList.remove("blink");
         }, 2000);
       });
@@ -250,27 +250,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  import { getFavorites } from './users.js'; // varmista että tämä on ylhäällä
-
-export async function loadFavoritesAndShow() {
-  const favList = document.getElementById("favorite-list");
-  favList.innerHTML = "";
-
-  try {
-    const favorites = await getFavorites();
-    favorites.forEach(fav => {
-      favList.innerHTML += `
-        <li class="suosikki-kortti">
-          <h4>${fav.title}</h4>
-          <p>${fav.content.replace(/\n/g, "<br>")}</p>
-        </li>
-      `;
-    });
-  } catch (error) {
-    console.error("Virhe ladattaessa suosikkeja:", error);
-    favList.innerHTML = "<li>Virhe suosikkien haussa.</li>";
-  }
-}
   export function showToast(message) {
     const toast = document.getElementById("toast");
     if (!toast) return;
@@ -282,3 +261,22 @@ export async function loadFavoritesAndShow() {
       toast.classList.add("hidden");
     }, 3000);
   }
+import { translations } from './translations.js';
+
+function updateLanguage(lang) {
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    if (translations[lang] && translations[lang][key]) {
+      el.textContent = translations[lang][key];
+    }
+  });
+  localStorage.setItem("language", lang);
+}
+
+document.getElementById("languageSwitcher").addEventListener("change", (e) => {
+  updateLanguage(e.target.value);
+});
+
+const savedLang = localStorage.getItem("language") || "en";
+document.getElementById("languageSwitcher").value = savedLang;
+updateLanguage(savedLang);

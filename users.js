@@ -71,14 +71,13 @@ export function setupAuthHandlers() {
       });
   }
   
-export async function addFavorite(recipeId) {
+export async function addFavorite(recipe) {
   const user = auth.currentUser;
-  if (!user) return alert("Kirjaudu ensin.");
 
   const userRef = doc(db, "users", user.uid);
   await setDoc(userRef, { favorites: [] }, { merge: true });
   await updateDoc(userRef, {
-    favorites: arrayUnion(recipeId)
+    favorites: arrayUnion(recipe)
   });
 }
 
@@ -94,7 +93,6 @@ export async function removeFavorite(recipeId) {
 
 export async function loadFavoritesAndShow() {
   const user = auth.currentUser;
-  if (!user) return alert("Kirjaudu ensin.");
 
   const docSnap = await getDoc(doc(db, "users", user.uid));
   const list = document.getElementById("favorite-list");
@@ -102,22 +100,38 @@ export async function loadFavoritesAndShow() {
 
   if (docSnap.exists()) {
     const favorites = docSnap.data().favorites || [];
-    favorites.forEach(id => {
+
+    favorites.forEach(item => {
       const li = document.createElement("li");
-      li.textContent = id;
+      li.innerHTML = `
+        <div class="suosikki-kortti">
+          <h4 class="resepti-otsikko">${item.title}</h4>
+          <div class="resepti-sisalto hidden">
+            <p>${item.content.replace(/\n/g, "<br>")}</p>
+          </div>
+        </div>
+      `;
       list.appendChild(li);
     });
+
+    list.querySelectorAll(".resepti-otsikko").forEach(otsikko => {
+      otsikko.addEventListener("click", () => {
+        const sisalto = otsikko.nextElementSibling;
+        sisalto.classList.toggle("hidden");
+      });
+    });
+
   } else {
-    list.innerHTML = "<li>Ei suosikkeja.</li>";
+    list.innerHTML = "<li>Ei tallennettuja.</li>";
   }
 }
 
 export async function getFavorites() {
-    const user = auth.currentUser;
-    if (!user) throw new Error("Ei kirjautunut käyttäjä.");
-  
-    const docRef = doc(db, "favorites", user.uid);
-    const docSnap = await getDoc(docRef);
-  
-    return docSnap.exists() ? docSnap.data().items || [] : [];
-  }
+  const user = auth.currentUser;
+  if (!user) throw new Error("Ei kirjautunut käyttäjä.");
+
+  const docRef = doc(db, "users", user.uid);
+  const docSnap = await getDoc(docRef);
+
+  return docSnap.exists() ? docSnap.data().favorites || [] : [];
+}

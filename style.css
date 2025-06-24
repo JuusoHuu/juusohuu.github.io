@@ -800,3 +800,41 @@ color: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   list-style-type: none;
 }
+
+.resepti-sisalto {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out, padding 0.3s ease;
+  padding: 0 1rem;
+}
+
+.resepti-sisalto:not(.hidden) {
+  max-height: 5000px; 
+  padding: 1rem;
+  text-align: center;
+}
+
+.resepti-otsikko {
+  cursor: pointer;
+  font-weight: bold;
+  margin: 0;
+}
+
+.suosikki-kortti {
+  background: white;
+  margin: 1rem 0;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.language-container {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+#languageSwitcher {
+  padding: 5px;
+  font-size: 1rem;
+  border-radius: 5px;
+}
