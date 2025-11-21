@@ -26,7 +26,6 @@ app.get("/", (req, res) => {
 
 //luetaan gemini api avain ympäristö muuttujista
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-const kieli = localStorage.getItem("language") || "en";
 
 //reitti resepti kyselyä varten
 app.post("/api/ask", async (req, res) => {
@@ -52,14 +51,6 @@ TÄRKEÄÄ: Noudata tarkasti alla olevia sääntöjä, muuten vastaus on virheel
 - ÄLÄ lisää mitään extra-sanoja.
 - VASTAA VAIN raakatekstillä.
 - JOKAINEN lisämerkki tulkitaan virheeksi.
-
-Vastauksen formaatti on PAKOLLINEN:
-
-resepti1
-resepti2
-resepti3
-
-Ei mitään muuta.
 
 Anna 3 ruokareseptiä, jotka sopivat ruokatyypille: ${ruokatyyppi}.
 ${kaytaKaapinSisaltoa === "yes" ? `Käytä seuraavia aineksia: ${tuotteet}` : "Älä käytä jääkaapin sisältöä"}.
