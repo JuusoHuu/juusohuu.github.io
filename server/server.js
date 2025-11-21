@@ -26,6 +26,7 @@ app.get("/", (req, res) => {
 
 //luetaan gemini api avain ympäristö muuttujista
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+const kieli = localStorage.getItem("language") || "en";
 
 //reitti resepti kyselyä varten
 app.post("/api/ask", async (req, res) => {
@@ -39,11 +40,31 @@ app.post("/api/ask", async (req, res) => {
     prompt
   } = req.body;
 
+
+  
 //promptti joka pyytää reseptien nimet geminiltä
-const promptToUse = prompt || `Anna 3 ruokareseptiä, jotka sopivat ruokatyypille: ${ruokatyyppi}.
+const promptToUse = prompt || `
+TÄRKEÄÄ: Noudata tarkasti alla olevia sääntöjä, muuten vastaus on virheellinen.
+
+- ÄLÄ KÄYTÄ mitään muotoiluja.
+- ÄLÄ KÄYTÄ boldia, italic-tekstiä, markdownia, otsikoita, numeroituja listoja, viivoja tai symboleja.
+- ÄLÄ KÄYTÄ kaksoispisteitä.
+- ÄLÄ lisää mitään extra-sanoja.
+- VASTAA VAIN raakatekstillä.
+- JOKAINEN lisämerkki tulkitaan virheeksi.
+
+Vastauksen formaatti on PAKOLLINEN:
+
+resepti1
+resepti2
+resepti3
+
+Ei mitään muuta.
+
+Anna 3 ruokareseptiä, jotka sopivat ruokatyypille: ${ruokatyyppi}.
 ${kaytaKaapinSisaltoa === "yes" ? `Käytä seuraavia aineksia: ${tuotteet}` : "Älä käytä jääkaapin sisältöä"}.
 Valmistusaika maksimissaan ${aikaraja} min eikä sisällä: ${allergiat || "ei mitään"}.
-Listaa pelkät reseptien nimet, ei aineksia, valmistusohjeita tai muita huomioita äläkä kommentoi muuta ylimääräistä.`;
+`;
 
 //lähettää konsoliin promptin varmistaakseen että se menee läpi
 console.log("Prompt being sent to Gemini:", promptToUse);
@@ -78,7 +99,7 @@ console.log("Prompt being sent to Gemini:", promptToUse);
   }
 });
 
-//määritetään portti jota palvelin kuuntelee ympäristö muuttuja tai oletus 3000
+//määritetään portti jota palvelin kuuntelee ympäristö muuttuja tai oletusta
 const PORT = process.env.PORT || 8080;
 
 console.log("Ympäristöportti:", process.env.PORT);
