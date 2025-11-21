@@ -42,20 +42,10 @@ app.post("/api/ask", async (req, res) => {
 
   
 //promptti joka pyytää reseptien nimet geminiltä
-const promptToUse = prompt || `
-TÄRKEÄÄ: Noudata tarkasti alla olevia sääntöjä, muuten vastaus on virheellinen.
-
-- ÄLÄ KÄYTÄ mitään muotoiluja.
-- ÄLÄ KÄYTÄ boldia, italic-tekstiä, markdownia, otsikoita, numeroituja listoja, viivoja tai symboleja.
-- ÄLÄ KÄYTÄ kaksoispisteitä.
-- ÄLÄ lisää mitään extra-sanoja.
-- VASTAA VAIN raakatekstillä.
-- JOKAINEN lisämerkki tulkitaan virheeksi.
-
-Anna 3 ruokareseptiä, jotka sopivat ruokatyypille: ${ruokatyyppi}.
+const promptToUse = prompt || `Anna 3 ruokareseptiä, jotka sopivat ruokatyypille: ${ruokatyyppi}.
 ${kaytaKaapinSisaltoa === "yes" ? `Käytä seuraavia aineksia: ${tuotteet}` : "Älä käytä jääkaapin sisältöä"}.
 Valmistusaika maksimissaan ${aikaraja} min eikä sisällä: ${allergiat || "ei mitään"}.
-`;
+Listaa pelkät reseptien nimet, ei aineksia, valmistusohjeita tai muita huomioita äläkä kommentoi muuta ylimääräistä.`;
 
 //lähettää konsoliin promptin varmistaakseen että se menee läpi
 console.log("Prompt being sent to Gemini:", promptToUse);
@@ -98,4 +88,5 @@ console.log("Ympäristöportti:", process.env.PORT);
 //käynnistetään palvelin
 app.listen(PORT, () => {
   console.log(`serveri pyörii portissa ${PORT}`);
+
 });
