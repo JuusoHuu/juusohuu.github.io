@@ -26,6 +26,7 @@ app.get("/", (req, res) => {
 
 //luetaan gemini api avain ympäristö muuttujista
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+const kieli = localStorage.getItem("language") || "en";
 
 //reitti resepti kyselyä varten
 app.post("/api/ask", async (req, res) => {
@@ -88,5 +89,4 @@ console.log("Ympäristöportti:", process.env.PORT);
 //käynnistetään palvelin
 app.listen(PORT, () => {
   console.log(`serveri pyörii portissa ${PORT}`);
-
 });
