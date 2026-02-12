@@ -14,7 +14,8 @@ import {
   setDoc,
   updateDoc,
   arrayUnion,
-  arrayRemove
+  arrayRemove,
+  getDocs
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -71,15 +72,15 @@ export function setupAuthHandlers() {
       });
   }
   
-export async function addFavorite(recipe) {
-  const user = auth.currentUser;
+  import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-  const userRef = doc(db, "users", user.uid);
-  await setDoc(userRef, { favorites: [] }, { merge: true });
-  await updateDoc(userRef, {
-    favorites: arrayUnion(recipe)
-  });
-}
+  export async function addFavorite(recipe) {
+    const user = auth.currentUser;
+    if (!user) throw new Error("Ei kirjautunut käyttäjä.");
+  
+    const userFavoritesRef = collection(db, "users", user.uid, "favorites");
+    await addDoc(userFavoritesRef, recipe);
+  }
 
 export async function removeFavorite(recipeId) {
   const user = auth.currentUser;
@@ -92,14 +93,18 @@ export async function removeFavorite(recipeId) {
 }
 
 export async function loadFavoritesAndShow() {
-  const user = auth.currentUser;
-
-  const docSnap = await getDoc(doc(db, "users", user.uid));
   const list = document.getElementById("favorite-list");
+  if (!list) return;
+
   list.innerHTML = "";
 
-  if (docSnap.exists()) {
-    const favorites = docSnap.data().favorites || [];
+  try {
+    const favorites = await getFavorites(); // Haetaan alikokoelmasta
+
+    if (favorites.length === 0) {
+      list.innerHTML = "<li>Ei tallennettuja.</li>";
+      return;
+    }
 
     favorites.forEach(item => {
       const li = document.createElement("li");
@@ -121,8 +126,9 @@ export async function loadFavoritesAndShow() {
       });
     });
 
-  } else {
-    list.innerHTML = "<li>Ei tallennettuja.</li>";
+  } catch (err) {
+    console.error("Virhe suosikkien latauksessa:", err);
+    list.innerHTML = "<li>Virhe ladattaessa suosikkeja.</li>";
   }
 }
 
@@ -130,8 +136,7 @@ export async function getFavorites() {
   const user = auth.currentUser;
   if (!user) throw new Error("Ei kirjautunut käyttäjä.");
 
-  const docRef = doc(db, "users", user.uid);
-  const docSnap = await getDoc(docRef);
-
-  return docSnap.exists() ? docSnap.data().favorites || [] : [];
+  const userFavoritesRef = collection(db, "users", user.uid, "favorites");
+  const snapshot = await getDocs(userFavoritesRef);
+  return snapshot.docs.map(doc => doc.data());
 }
